@@ -1,0 +1,36 @@
+﻿{
+  "id": null,
+  "uid": "modo-application-overview",
+  "title": "Application Overview - MODO Backend",
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "30s",
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    { "type": "stat", "title": "JVM Heap Used", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "jvm_memory_used_bytes{area=\"heap\"}", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 0, "y": 0 }, "fieldConfig": { "defaults": { "unit": "bytes", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "JVM Heap Max", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "jvm_memory_max_bytes{area=\"heap\"}", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 4, "y": 0 }, "fieldConfig": { "defaults": { "unit": "bytes", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "JVM Non-Heap Used", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "jvm_memory_used_bytes{area=\"nonheap\"}", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 8, "y": 0 }, "fieldConfig": { "defaults": { "unit": "bytes", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "JVM Non-Heap Max", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "jvm_memory_max_bytes{area=\"nonheap\"}", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 12, "y": 0 }, "fieldConfig": { "defaults": { "unit": "bytes", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "GC Collection Count", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "jvm_gc_collection_seconds_count", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 16, "y": 0 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "GC Collection Time (s)", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "jvm_gc_collection_seconds_sum", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 20, "y": 0 }, "fieldConfig": { "defaults": { "unit": "seconds", "decimals": 2 }, "overrides": [] } },
+    { "type": "stat", "title": "Live Threads", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "jvm_threads_live", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 0, "y": 7 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "Peak Threads", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "jvm_threads_peak", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 4, "y": 7 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "Runnable Threads", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "jvm_threads_states{state=\"runnable\"}", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 8, "y": 7 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "Process Uptime", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "process_uptime_seconds", "instant": true } ], "gridPos": { "h": 7, "w": 4, "x": 12, "y": 7 }, "fieldConfig": { "defaults": { "unit": "seconds", "decimals": 0 }, "overrides": [] } },
+    { "type": "timeseries", "title": "HTTP Request Rate", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "rate(http_server_requests_seconds_count[5m])" } ], "gridPos": { "h": 8, "w": 12, "x": 0, "y": 14 }, "fieldConfig": { "defaults": { "unit": "ops", "decimals": 2 }, "overrides": [] } },
+    { "type": "stat", "title": "HTTP Request Duration (avg)", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "rate(http_server_requests_seconds_sum[5m]) / rate(http_server_requests_seconds_count[5m])" } ], "gridPos": { "h": 8, "w": 12, "x": 12, "y": 14 }, "fieldConfig": { "defaults": { "unit": "seconds", "decimals": 4 }, "overrides": [] } },
+    { "type": "stat", "title": "HTTP 5xx Error Rate", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "rate(http_server_requests_seconds_count{status=~\"5..\"}[5m])" } ], "gridPos": { "h": 7, "w": 6, "x": 0, "y": 22 }, "fieldConfig": { "defaults": { "unit": "ops", "decimals": 2 }, "overrides": [] } },
+    { "type": "stat", "title": "HTTP 4xx Error Rate", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "rate(http_server_requests_seconds_count{status=~\"4..\"}[5m])" } ], "gridPos": { "h": 7, "w": 6, "x": 6, "y": 22 }, "fieldConfig": { "defaults": { "unit": "ops", "decimals": 2 }, "overrides": [] } },
+    { "type": "stat", "title": "HikariCP Active Connections", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "hikaricp_connections_active", "instant": true } ], "gridPos": { "h": 7, "w": 6, "x": 0, "y": 29 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "HikariCP Idle Connections", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "hikaricp_connections_idle", "instant": true } ], "gridPos": { "h": 7, "w": 6, "x": 6, "y": 29 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "HikariCP Max Connections", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "hikaricp_connections_max", "instant": true } ], "gridPos": { "h": 7, "w": 6, "x": 12, "y": 29 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "HikariCP Pending Connections", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "hikaricp_connections_pending", "instant": true } ], "gridPos": { "h": 7, "w": 6, "x": 18, "y": 29 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "Tomcat Threads Busy", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "tomcat_threads_busy", "instant": true } ], "gridPos": { "h": 7, "w": 6, "x": 0, "y": 36 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "Tomcat Threads Current", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "tomcat_threads_current", "instant": true } ], "gridPos": { "h": 7, "w": 6, "x": 6, "y": 36 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "Hibernate Entities Loaded", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "hibernate_entities_loaded_total", "instant": true } ], "gridPos": { "h": 7, "w": 6, "x": 12, "y": 36 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } },
+    { "type": "stat", "title": "Hibernate Queries", "datasource": "Prometheus", "targets": [ { "refId": "A", "expr": "hibernate_queries_total", "instant": true } ], "gridPos": { "h": 7, "w": 6, "x": 18, "y": 36 }, "fieldConfig": { "defaults": { "unit": "short", "decimals": 0 }, "overrides": [] } }
+  ]
+}
